@@ -3,9 +3,9 @@
 
 double EuropeanOption::CalculateCallPrice() const {
   
-  double tmp = sigma * sqrt(t)
+  double tmp = sigma * sqrt(T);
 
-  double d1 = ( log(U/K) + (b + (sigma*sigma)*0.5) * T) / tmp
+  double d1 = ( log(U/K) + (b + (sigma*sigma)*0.5) * T) / tmp;
   double d2 = d1 - tmp;
 
   return (U*exp((b-r)*T) * N(d1)) - (K * exp(-r * T) * N(d2));
@@ -14,9 +14,9 @@ double EuropeanOption::CalculateCallPrice() const {
 
 double EuropeanOption::CalculateCallDelta() const {
   
-  double tmp = sig * sqrt(T);
+  double tmp = sigma * sqrt(T);
 
-  double d1 = ( log(U/K) + (b+ (sig*sig)*0.5 ) * T )/ tmp;
+  double d1 = ( log(U/K) + (b+ (sigma*sigma)*0.5 ) * T )/ tmp;
 
   return exp((b-r)*T) * N(d1);
 }
@@ -24,9 +24,9 @@ double EuropeanOption::CalculateCallDelta() const {
 
 double EuropeanOption::CalculatePutPrice() const {
 
-  double tmp = sig * sqrt(T);
+  double tmp = sigma * sqrt(T);
 
-  double d1 = ( log(U/K) + (b+ (sig*sig)*0.5 ) * T )/ tmp;
+  double d1 = ( log(U/K) + (b+ (sigma*sigma)*0.5 ) * T )/ tmp;
   double d2 = d1 - tmp;
 
   return (K * exp(-r * T)* N(-d2)) - (U * exp((b-r)*T) * N(-d1));
@@ -35,9 +35,9 @@ double EuropeanOption::CalculatePutPrice() const {
 
 double EuropeanOption::CalculatePutDelta() const {
 
-  double tmp = sig * sqrt(T);
+  double tmp = sigma * sqrt(T);
 
-  double d1 = ( log(U/K) + (b+ (sig*sig)*0.5 ) * T )/ tmp;
+  double d1 = ( log(U/K) + (b+ (sigma*sigma)*0.5 ) * T )/ tmp;
 
   return exp((b-r)*T) * (N(d1) - 1.0); 
 }
@@ -66,7 +66,7 @@ void EuropeanOption::copy(const EuropeanOption& option2)
   T = option2.T;
   U = option2.U;
   b = option2.b;
-  optionType = option2.optionType
+  optionType = option2.optionType;
   
 }
 
@@ -143,8 +143,8 @@ void EuropeanOption::toggle()
 {
 
   if (optionType == "C")
-    optionType == "P";
+    optionType = "P";
   else
-    optionType == "C";
+    optionType = "C";
 
 }
